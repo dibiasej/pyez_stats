@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyez_stats.hypothesis_testing &mdash; pyez_stats 0.1.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=a58bc63e"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pyez_stats
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html"><code class="docutils literal notranslate"><span class="pre">Data</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.Gaussian"><code class="docutils literal notranslate"><span class="pre">Gaussian</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.Exponential"><code class="docutils literal notranslate"><span class="pre">Exponential</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.Bernoulli"><code class="docutils literal notranslate"><span class="pre">Bernoulli</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.Poisson"><code class="docutils literal notranslate"><span class="pre">Poisson</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.Binomial"><code class="docutils literal notranslate"><span class="pre">Binomial</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.Uniform"><code class="docutils literal notranslate"><span class="pre">Uniform</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.Geometric"><code class="docutils literal notranslate"><span class="pre">Geometric</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.TestStatistic"><code class="docutils literal notranslate"><span class="pre">TestStatistic</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.PValue"><code class="docutils literal notranslate"><span class="pre">PValue</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.ConfidenceInterval"><code class="docutils literal notranslate"><span class="pre">ConfidenceInterval</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.Bayesian"><code class="docutils literal notranslate"><span class="pre">Bayesian</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.LinearRegression"><code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.MultipleLinearRegression"><code class="docutils literal notranslate"><span class="pre">MultipleLinearRegression</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.PCA"><code class="docutils literal notranslate"><span class="pre">PCA</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyez_stats</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pyez_stats.hypothesis_testing</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pyez_stats.hypothesis_testing</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">statistic</span> <span class="k">as</span> <span class="n">s</span> 
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">distributions</span> <span class="k">as</span> <span class="n">ds</span>
+            
+<div class="viewcode-block" id="TestStatistic">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.TestStatistic">[docs]</a>
+<span class="k">class</span> <span class="nc">TestStatistic</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">Distribution</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Instantiate test statistic object for use in our HypothesisTest class.</span>
+<span class="sd">    Inherits Distribution class.</span>
+
+<span class="sd">    :param Xs: Array like data.</span>
+<span class="sd">    :type Xs: np.ndarray</span>
+
+<span class="sd">    :param model: distribution our data fits.</span>
+<span class="sd">    :type model: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Xs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Xs</span> <span class="o">=</span> <span class="n">Xs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Xs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="TestStatistic.confidence_interval">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.TestStatistic.confidence_interval">[docs]</a>
+    <span class="k">def</span> <span class="nf">confidence_interval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">percent</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">95</span><span class="p">,</span> <span class="n">parameter</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Used to calculate a confidence interval for our confidence interval test.</span>
+
+<span class="sd">        :param percent: Percent of distribution we are testing against.</span>
+<span class="sd">        :type percent: float</span>
+
+<span class="sd">        :param parameter: defines what parameter we want to calculate the confidence interval for.</span>
+<span class="sd">        :type parameter: str</span>
+
+<span class="sd">        :return: list with upper and lower bounds for our parameter.</span>
+<span class="sd">        :rtype: List</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">distribution</span><span class="p">()</span><span class="o">.</span><span class="n">confidence_interval</span><span class="p">(</span><span class="n">percent</span><span class="p">,</span> <span class="n">parameter</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="TestStatistic.z_test_statistic">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.TestStatistic.z_test_statistic">[docs]</a>
+    <span class="k">def</span> <span class="nf">z_test_statistic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">null</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method used to calculate our z test statistic for our z test.</span>
+
+<span class="sd">        :param null: Value of our null hypothesis.</span>
+<span class="sd">        :type null: float</span>
+
+<span class="sd">        :param sigma: Known variance of our sample.</span>
+<span class="sd">        :type sigma: float</span>
+
+<span class="sd">        :return: z test statistic</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="n">dist</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">distribution</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+        <span class="n">x_bar</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="nb">repr</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Gaussian&quot;</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="n">sigma</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Sigma must be provided&quot;</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="p">(</span><span class="n">x_bar</span> <span class="o">-</span> <span class="n">null</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sigma</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">))</span>
+        
+        <span class="k">elif</span> <span class="nb">repr</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Exponential&quot;</span><span class="p">:</span>
+            
+            <span class="k">if</span> <span class="n">sigma</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">null</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="p">(</span><span class="n">x_bar</span> <span class="o">-</span> <span class="n">null</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sigma</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">))</span>
+        
+        <span class="k">elif</span> <span class="nb">repr</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Binomial&quot;</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="n">sigma</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">null</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+
+            <span class="n">x_bar</span> <span class="o">=</span> <span class="n">x_bar</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">x_bar</span> <span class="o">-</span> <span class="n">null</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sigma</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">))</span>
+        
+        <span class="k">elif</span> <span class="nb">repr</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Geometric&quot;</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="n">null</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">null</span><span class="p">)</span>
+                <span class="k">return</span> <span class="p">(</span><span class="n">x_bar</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">null</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sigma</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">))</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">null</span><span class="p">)</span>
+                <span class="k">return</span> <span class="p">(</span><span class="n">x_bar</span> <span class="o">-</span> <span class="n">null</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sigma</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">))</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="n">sigma</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">null</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="p">(</span><span class="n">x_bar</span> <span class="o">-</span> <span class="n">null</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sigma</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">))</span></div>
+
+        
+<div class="viewcode-block" id="TestStatistic.t_test_statistic">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.TestStatistic.t_test_statistic">[docs]</a>
+    <span class="k">def</span> <span class="nf">t_test_statistic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">null</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method that returns a t test statistic for a t test.</span>
+
+<span class="sd">        :param null: Value for our null hypothesis.</span>
+<span class="sd">        :type null: np.ndarray</span>
+
+<span class="sd">        :return: T test statistic.</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">distribution</span><span class="p">(</span><span class="s2">&quot;Gaussian&quot;</span><span class="p">)</span>
+        <span class="n">x_bar</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">var</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x_bar</span> <span class="o">-</span> <span class="n">null</span><span class="p">)</span> <span class="o">/</span> <span class="n">var</span></div>
+
+        
+<div class="viewcode-block" id="TestStatistic.walds_test_statistic">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.TestStatistic.walds_test_statistic">[docs]</a>
+    <span class="k">def</span> <span class="nf">walds_test_statistic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">null</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">fisher_info</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method that returns a wald test statistic for a wald test.</span>
+
+<span class="sd">        :param null: Value for our null hypothesis.</span>
+<span class="sd">        :type null: float</span>
+
+<span class="sd">        :param fisher_info: If true calculates out test using fisher information.</span>
+<span class="sd">        :type fisher_info: bool</span>
+
+<span class="sd">        :return: wald test statistic.</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">distribution</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">dist</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;You must define a model&quot;</span><span class="p">)</span>
+        
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="s2">&quot;lamb_hat&quot;</span><span class="p">):</span>
+            <span class="n">theta_hat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">lamb_hat</span><span class="p">()</span>
+
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="s2">&quot;p_hat&quot;</span><span class="p">):</span>
+            <span class="n">theta_hat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">p_hat</span><span class="p">()</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">theta_hat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">fisher_info</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="n">var_theta_hat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">var_theta_hat</span><span class="p">()</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">theta_hat</span> <span class="o">-</span> <span class="n">null</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var_theta_hat</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># note if we get rid of the squre over (theta_hat - null) and take the square root of (self.N * var_theta_hat) we get the same awnser as when the fisher info is false</span>
+            <span class="n">fisher</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">fisher_information</span><span class="p">()</span>
+            <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">*</span> <span class="n">fisher</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">theta_hat</span> <span class="o">-</span> <span class="n">null</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span></div>
+
+        
+<div class="viewcode-block" id="TestStatistic.likelihood_ratio_test_statistic">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.TestStatistic.likelihood_ratio_test_statistic">[docs]</a>
+    <span class="k">def</span> <span class="nf">likelihood_ratio_test_statistic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">null</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">known_var</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method that returns a likelihood ratio test statistic for a likelihood ratio test statistic.</span>
+
+<span class="sd">        :param null: Value for our null hypothesis.</span>
+<span class="sd">        :type null: float</span>
+
+<span class="sd">        :param known_var: Optional parameter if variance is known.</span>
+<span class="sd">        :type known_var: float</span>
+
+<span class="sd">        :return: likelihood ratio test statistic.</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">dist</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">distribution</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">repr</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Gaussian&quot;</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="n">known_var</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;You must define a known population variance in order to perform a likelihood test on a Gaussian&quot;</span><span class="p">)</span>
+            
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">dist</span><span class="o">.</span><span class="n">likelihood_ratio</span><span class="p">(</span><span class="n">null</span><span class="p">,</span> <span class="n">known_var</span><span class="p">)</span>
+        
+        <span class="k">else</span><span class="p">:</span>
+            
+            <span class="k">return</span> <span class="n">dist</span><span class="o">.</span><span class="n">likelihood_ratio</span><span class="p">(</span><span class="n">null</span><span class="p">)</span></div>
+</div>
+
+
+<div class="viewcode-block" id="PValue">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.PValue">[docs]</a>
+<span class="k">class</span> <span class="nc">PValue</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Instantiate object used to calculate and represent a P value for our test.</span>
+
+<span class="sd">    :param Xs: Array of data.</span>
+<span class="sd">    :type Xs: np.ndarray</span>
+
+<span class="sd">    :param null: value of null hypothesis.</span>
+<span class="sd">    :type null: float</span>
+
+<span class="sd">    :param model: Distribution our data represents.</span>
+<span class="sd">    :type model: str</span>
+
+<span class="sd">    :param t_test: True if we are conducting a t test.</span>
+<span class="sd">    :type t_test: bool</span>
+
+<span class="sd">    :param wald_test: True if we are conducting a wald test.</span>
+<span class="sd">    :type wald_test: bool</span>
+
+<span class="sd">    :param left_tail: True if we are conducting a left tailed test.</span>
+<span class="sd">    :type left_tail: bool</span>
+
+<span class="sd">    :param right_tail: True if we are conducting a right tailed test.</span>
+<span class="sd">    :type right_tail: bool</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Xs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">null</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">t_test</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">wald_test</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">left_tail</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">right_tail</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Xs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">null</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">null</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">t_test</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">t_test</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wald_test</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">wald_test</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left_tail</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">left_tail</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right_tail</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">right_tail</span>
+
+<div class="viewcode-block" id="PValue.t_test_cdf">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.PValue.t_test_cdf">[docs]</a>
+    <span class="k">def</span> <span class="nf">t_test_cdf</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Used to find our p value.</span>
+
+<span class="sd">        :return: cdf of student t distribution.</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">t_stat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">TestStatistic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span><span class="o">.</span><span class="n">t_test_statistic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">null</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">cdf</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">t_stat</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cdf</span></div>
+
+    
+<div class="viewcode-block" id="PValue.z_test_cdf">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.PValue.z_test_cdf">[docs]</a>
+    <span class="k">def</span> <span class="nf">z_test_cdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Used to find our p value.</span>
+
+<span class="sd">        :param sigma: Known variance.</span>
+<span class="sd">        :type sigma: float</span>
+
+<span class="sd">        :return: cdf of gaussian distribution.</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">Distribution</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span><span class="o">.</span><span class="n">distribution</span><span class="p">(</span><span class="s2">&quot;Gaussian&quot;</span><span class="p">)</span>
+        <span class="n">test_stat</span> <span class="o">=</span> <span class="n">TestStatistic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">z_test_statistic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">null</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+        <span class="n">cdf</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">_gaussian_cdf</span><span class="p">(</span><span class="n">test_stat</span><span class="p">,</span> <span class="n">test_statistic</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cdf</span></div>
+
+    
+<div class="viewcode-block" id="PValue.walds_test_cdf">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.PValue.walds_test_cdf">[docs]</a>
+    <span class="k">def</span> <span class="nf">walds_test_cdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fisher_info</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Used to find our p value.</span>
+
+<span class="sd">        :param fisher_info: If true calculates out test using fisher information.</span>
+<span class="sd">        :type fisher_info: bool</span>
+
+<span class="sd">        :return: cdf of gaussian distribution.</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">Distribution</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span><span class="o">.</span><span class="n">distribution</span><span class="p">(</span><span class="s2">&quot;Gaussian&quot;</span><span class="p">)</span>
+        <span class="n">test_stat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">TestStatistic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">walds_test_statistic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">null</span><span class="p">,</span> <span class="n">fisher_info</span><span class="p">)</span>
+        
+        <span class="n">cdf</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">_gaussian_cdf</span><span class="p">(</span><span class="n">test_stat</span><span class="p">,</span> <span class="n">test_statistic</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cdf</span></div>
+
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">fisher_info</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">left_tail</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">wald_test</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">cdf</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">walds_test_cdf</span><span class="p">(</span><span class="n">fisher_info</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">cdf</span>
+            
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_test</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">cdf</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_test_cdf</span><span class="p">()</span>
+                <span class="k">return</span> <span class="n">cdf</span>
+            
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">cdf</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_test_cdf</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">cdf</span>
+            
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">right_tail</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">wald_test</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">cdf</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">walds_test_cdf</span><span class="p">(</span><span class="n">fisher_info</span><span class="p">)</span>
+                <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">cdf</span>
+            
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_test</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">cdf</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_test_cdf</span><span class="p">()</span>
+                <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">cdf</span>
+            
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">cdf</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_test_cdf</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+                <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">cdf</span>
+            
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">wald_test</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">dist</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">Distribution</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span><span class="o">.</span><span class="n">distribution</span><span class="p">(</span><span class="s2">&quot;Gaussian&quot;</span><span class="p">)</span>
+                <span class="n">test_stat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">TestStatistic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">walds_test_statistic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">null</span><span class="p">,</span> <span class="n">fisher_info</span><span class="p">)</span>
+                <span class="n">cdf</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">_gaussian_cdf</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">test_stat</span><span class="p">),</span> <span class="n">test_statistic</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+                <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">cdf</span>
+            
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_test</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">t_stat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">TestStatistic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span><span class="o">.</span><span class="n">t_test_statistic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">null</span><span class="p">)</span>
+                <span class="n">df</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+                <span class="n">cdf</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">t_stat</span><span class="p">),</span> <span class="n">df</span><span class="p">)</span>
+                <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">cdf</span>
+            
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dist</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">Distribution</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span><span class="o">.</span><span class="n">distribution</span><span class="p">(</span><span class="s2">&quot;Gaussian&quot;</span><span class="p">)</span>
+                <span class="n">test_stat</span> <span class="o">=</span> <span class="n">TestStatistic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">z_test_statistic</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">null</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+                <span class="n">cdf</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">_gaussian_cdf</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">test_stat</span><span class="p">),</span> <span class="n">test_statistic</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+                <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">cdf</span></div>
+
+
+<span class="k">class</span> <span class="nc">HypothesisTesting</span><span class="p">(</span><span class="n">TestStatistic</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Instantiate a object for running hypothesis testing.</span>
+<span class="sd">    Inherits Test statistic class.</span>
+
+<span class="sd">    :param Xs: Array of data.</span>
+<span class="sd">    :type Xs: np.ndarray</span>
+
+<span class="sd">    :param model: Defines distribution our data fits.</span>
+<span class="sd">    :type model: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Xs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Xs</span> <span class="o">=</span> <span class="n">Xs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Xs</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">p_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">null</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">t_test</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">wald_test</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">left_tail</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">right_tail</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">fisher_info</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method used to calculate and represent a P value for our test.</span>
+
+<span class="sd">        :param null: value of null hypothesis.</span>
+<span class="sd">        :type null: float</span>
+
+<span class="sd">        :param t_test: True if we are conducting a t test.</span>
+<span class="sd">        :type t_test: bool</span>
+
+<span class="sd">        :param wald_test: True if we are conducting a wald test.</span>
+<span class="sd">        :type wald_test: bool</span>
+
+<span class="sd">        :param left_tail: True if we are conducting a left tailed test.</span>
+<span class="sd">        :type left_tail: bool</span>
+
+<span class="sd">        :param right_tail: True if we are conducting a right tailed test.</span>
+<span class="sd">        :type right_tail: bool</span>
+
+<span class="sd">        :param sigma: used if our p value requries a known variance.</span>
+<span class="sd">        :type sigma: float</span>
+
+<span class="sd">        :param fisher_info: if true will use the fisher info in out p value calculation (only for walds test)</span>
+<span class="sd">        :type fisher_info: bool</span>
+
+<span class="sd">        :return: p value of our test.</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">p_val</span> <span class="o">=</span> <span class="n">PValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">,</span> <span class="n">null</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">t_test</span><span class="p">,</span> <span class="n">wald_test</span><span class="p">,</span> <span class="n">left_tail</span><span class="p">,</span> <span class="n">right_tail</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">p_val</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">fisher_info</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">t_test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">null</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">percent</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">95</span><span class="p">,</span> <span class="n">left_tail</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">right_tail</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method for calculating our t test.</span>
+
+<span class="sd">        :param null: value of null hypothesis.</span>
+<span class="sd">        :type null: float</span>
+
+<span class="sd">        :param percent: Defines percent of our distribution.</span>
+<span class="sd">        :type percent: float</span>
+
+<span class="sd">        :param left_tail: True if we are conducting a left tailed test.</span>
+<span class="sd">        :type left_tail: bool</span>
+
+<span class="sd">        :param right_tail: True if we are conducting a right tailed test.</span>
+<span class="sd">        :type right_tail: bool</span>
+
+<span class="sd">        :return: _test method from call to our object.</span>
+<span class="sd">        :rtype: HypothesisTest</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">percent</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span> <span class="n">percent</span> <span class="o">*=</span> <span class="mf">.01</span>
+
+        <span class="k">if</span> <span class="n">right_tail</span> <span class="ow">is</span> <span class="kc">False</span> <span class="ow">and</span> <span class="n">left_tail</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span> <span class="n">percent</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">percent</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+        <span class="n">t_stat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">t_test_statistic</span><span class="p">(</span><span class="n">null</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">qa</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">percent</span><span class="p">,</span> <span class="n">df</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_test</span><span class="p">(</span><span class="n">t_stat</span><span class="p">,</span> <span class="n">qa</span><span class="p">,</span> <span class="n">left_tail</span><span class="p">,</span> <span class="n">right_tail</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">z_test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">null</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">percent</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">95</span><span class="p">,</span> <span class="n">left_tail</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">right_tail</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method for calculating our z test.</span>
+
+<span class="sd">        :param null: value of null hypothesis.</span>
+<span class="sd">        :type null: float</span>
+
+<span class="sd">        :param sigma: Known variance.</span>
+<span class="sd">        :type sigma: float</span>
+
+<span class="sd">        :param percent: Defines percent of our distribution.</span>
+<span class="sd">        :type percent: float</span>
+
+<span class="sd">        :param left_tail: True if we are conducting a left tailed test.</span>
+<span class="sd">        :type left_tail: bool</span>
+
+<span class="sd">        :param right_tail: True if we are conducting a right tailed test.</span>
+<span class="sd">        :type right_tail: bool</span>
+
+<span class="sd">        :return: _test method from call to our object.</span>
+<span class="sd">        :rtype: HypothesisTest</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">percent</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span> <span class="n">percent</span> <span class="o">*=</span> <span class="mf">.01</span>
+
+        <span class="k">if</span> <span class="n">right_tail</span> <span class="ow">is</span> <span class="kc">False</span> <span class="ow">and</span> <span class="n">left_tail</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span> <span class="n">percent</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">percent</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+        <span class="n">dist</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">Distribution</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span><span class="o">.</span><span class="n">distribution</span><span class="p">(</span><span class="s2">&quot;Gaussian&quot;</span><span class="p">)</span>
+
+        <span class="n">t_stat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">z_test_statistic</span><span class="p">(</span><span class="n">null</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+        <span class="c1">#qa: float = dist.percentile(percent, standardize=True)</span>
+        <span class="n">qa</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">percent</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_test</span><span class="p">(</span><span class="n">t_stat</span><span class="p">,</span> <span class="n">qa</span><span class="p">,</span> <span class="n">left_tail</span><span class="p">,</span> <span class="n">right_tail</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">walds_test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">null</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">percent</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">95</span><span class="p">,</span> <span class="n">left_tail</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">right_tail</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">fisher_info</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method for calculating our walds test.</span>
+
+<span class="sd">        :param null: value of null hypothesis.</span>
+<span class="sd">        :type null: float</span>
+
+<span class="sd">        :param percent: Defines percent of our distribution.</span>
+<span class="sd">        :type percent: float</span>
+
+<span class="sd">        :param left_tail: True if we are conducting a left tailed test.</span>
+<span class="sd">        :type left_tail: bool</span>
+
+<span class="sd">        :param right_tail: True if we are conducting a right tailed test.</span>
+<span class="sd">        :type right_tail: bool</span>
+
+<span class="sd">        :param fisher_info: If true uses the fisher information to calculate our test statistic.</span>
+<span class="sd">        :type fisher_info: bool</span>
+
+<span class="sd">        :return: _test method from call to our object.</span>
+<span class="sd">        :rtype: HypothesisTest</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">percent</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span> <span class="n">percent</span> <span class="o">*=</span> <span class="mf">.01</span>
+
+        <span class="k">if</span> <span class="n">right_tail</span> <span class="ow">is</span> <span class="kc">False</span> <span class="ow">and</span> <span class="n">left_tail</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span> <span class="n">percent</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">percent</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+        <span class="n">w</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">walds_test_statistic</span><span class="p">(</span><span class="n">null</span><span class="p">,</span> <span class="n">fisher_info</span><span class="p">)</span>
+        <span class="n">qa</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">percent</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_test</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">qa</span><span class="p">,</span> <span class="n">left_tail</span><span class="p">,</span> <span class="n">right_tail</span><span class="p">)</span>
+            
+    <span class="k">def</span> <span class="nf">likelihood_ratio_test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">null</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">percent</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">95</span><span class="p">,</span> <span class="n">known_var</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method for calculating our likelihood ratio test.</span>
+
+<span class="sd">        :param null: value of null hypothesis.</span>
+<span class="sd">        :type null: float</span>
+
+<span class="sd">        :param percent: Defines percent of our distribution.</span>
+<span class="sd">        :type percent: float</span>
+
+<span class="sd">        :param known_var: Specifies out known variance.</span>
+<span class="sd">        :type left_tail: float</span>
+
+<span class="sd">        :return: _test method from call to our object.</span>
+<span class="sd">        :rtype: HypothesisTest</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">percent</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span> <span class="n">percent</span> <span class="o">*=</span> <span class="mf">.01</span>
+
+        <span class="n">percent</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">percent</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+        <span class="n">t</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">likelihood_ratio_test_statistic</span><span class="p">(</span><span class="n">null</span><span class="p">,</span> <span class="n">known_var</span><span class="p">)</span>
+        <span class="n">qa</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">chi2</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">percent</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_test</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">qa</span><span class="p">)</span>
+            
+    <span class="k">def</span> <span class="nf">confidence_interval_test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">null</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method used to calculate our confidence interval test.</span>
+
+<span class="sd">        :param null: values for the parameter we are testing.</span>
+<span class="sd">        :type null: Dictionary</span>
+
+<span class="sd">        :return: Confidence interval test.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">paramater_name</span><span class="p">,</span> <span class="n">null_values</span> <span class="ow">in</span> <span class="n">null</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            
+            <span class="n">ci</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">confidence_interval</span><span class="p">(</span><span class="n">parameter</span> <span class="o">=</span> <span class="n">paramater_name</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">null_values</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+                <span class="k">for</span> <span class="n">null_value</span> <span class="ow">in</span> <span class="n">null_values</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;True </span><span class="si">{</span><span class="n">paramater_name</span><span class="si">}</span><span class="s2"> Confidence Interval:</span><span class="se">\n</span><span class="si">{</span><span class="n">ci</span><span class="si">}</span><span class="se">\n</span><span class="s2">Null Value: </span><span class="si">{</span><span class="n">null_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">null_value</span> <span class="o">&gt;</span> <span class="n">ci</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">or</span> <span class="n">null_value</span> <span class="o">&lt;</span> <span class="n">ci</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+
+                        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Reject the null&quot;</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        
+                        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Fail to reject the null&quot;</span>                    
+            <span class="k">else</span><span class="p">:</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;True </span><span class="si">{</span><span class="n">paramater_name</span><span class="si">}</span><span class="s2"> Confidence Interval:</span><span class="se">\n</span><span class="si">{</span><span class="n">ci</span><span class="si">}</span><span class="se">\n</span><span class="s2">Null Value: </span><span class="si">{</span><span class="n">null_values</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">null_values</span> <span class="o">&gt;</span> <span class="n">ci</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">or</span> <span class="n">null_values</span> <span class="o">&lt;</span> <span class="n">ci</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+
+                    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Reject the null&quot;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    
+                    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Fail to reject the null&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test_statistic</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">qa</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">left_tail</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">right_tail</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Special method used for return values in other methods.</span>
+<span class="sd">        Calculates are defines tests.</span>
+
+<span class="sd">        :param test_statistic: test statistic of the test we are running.</span>
+<span class="sd">        :type test_statistic: float</span>
+
+<span class="sd">        :param qa: Quantile from the distribution that matches the test we are running.</span>
+<span class="sd">        :type qa: float</span>
+
+<span class="sd">        :param left_tail: True if we are conducting a left tailed test.</span>
+<span class="sd">        :type left_tail: bool</span>
+
+<span class="sd">        :param right_tail: True if we are conducting a right tailed test.</span>
+<span class="sd">        :type right_tail: bool</span>
+
+<span class="sd">        :return: Outcome of our test.</span>
+<span class="sd">        :rtype: str        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">left_tail</span> <span class="ow">is</span> <span class="kc">False</span> <span class="ow">and</span> <span class="n">right_tail</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="c1"># run a two tail walds test</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Quantile: </span><span class="si">{</span><span class="n">qa</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test Statistic: </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">test_statistic</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">test_statistic</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">qa</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;Reject the null hypothesis&quot;</span>
+            
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;Fail to reject the null hypothesis&quot;</span>
+            
+        <span class="k">elif</span> <span class="n">left_tail</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test Statistic: </span><span class="si">{</span><span class="n">test_statistic</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Quantile: </span><span class="si">{</span><span class="o">-</span><span class="n">qa</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">test_statistic</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">qa</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;Reject the null hypothesis&quot;</span>
+            
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;Fail to reject the null hypothesis&quot;</span>
+            
+        <span class="k">elif</span> <span class="n">right_tail</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test Statistic: </span><span class="si">{</span><span class="n">test_statistic</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Quantile: </span><span class="si">{</span><span class="n">qa</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">test_statistic</span> <span class="o">&gt;</span> <span class="n">qa</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;Reject the null hypothesis&quot;</span>
+            
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;Fail to reject the null hypothesis&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">null</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">t_test</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">wald_test</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">z_test</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">left_tail</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">right_tail</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">fisher_info</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="n">p_val</span> <span class="o">=</span> <span class="n">PValue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">,</span> <span class="n">null</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">t_test</span><span class="p">,</span> <span class="n">wald_test</span><span class="p">,</span> <span class="n">left_tail</span><span class="p">,</span> <span class="n">right_tail</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">t_test</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p-value: </span><span class="si">{</span><span class="n">p_val</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">fisher_info</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_test</span><span class="p">(</span><span class="n">null</span><span class="p">,</span> <span class="n">left_tail</span><span class="o">=</span><span class="n">left_tail</span><span class="p">,</span> <span class="n">right_tail</span><span class="o">=</span><span class="n">right_tail</span><span class="p">)</span>
+        
+        <span class="k">elif</span> <span class="n">wald_test</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p_value: </span><span class="si">{</span><span class="n">p_val</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">fisher_info</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">walds_test</span><span class="p">(</span><span class="n">null</span><span class="p">,</span> <span class="n">left_tail</span><span class="o">=</span><span class="n">left_tail</span><span class="p">,</span> <span class="n">right_tail</span><span class="o">=</span><span class="n">right_tail</span><span class="p">,</span> <span class="n">fisher_info</span><span class="o">=</span><span class="n">fisher_info</span><span class="p">)</span>
+        
+        <span class="k">elif</span> <span class="n">z_test</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p-value: </span><span class="si">{</span><span class="n">p_val</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span><span class="w"> </span><span class="n">fisher_info</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_test</span><span class="p">(</span><span class="n">null</span><span class="p">,</span> <span class="n">left_tail</span><span class="o">=</span><span class="n">left_tail</span><span class="p">,</span> <span class="n">right_tail</span><span class="o">=</span><span class="n">right_tail</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Jason DiBiase.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

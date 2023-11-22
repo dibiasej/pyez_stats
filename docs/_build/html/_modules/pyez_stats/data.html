@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyez_stats.data &mdash; pyez_stats 0.1.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=a58bc63e"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pyez_stats
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html"><code class="docutils literal notranslate"><span class="pre">Data</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyez_stats</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pyez_stats.data</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pyez_stats.data</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">statistic</span> <span class="k">as</span> <span class="n">s</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">distributions</span> <span class="k">as</span> <span class="n">ds</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">hypothesis_testing</span> <span class="k">as</span> <span class="n">ht</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">bayesian_statistics</span> <span class="k">as</span> <span class="n">bs</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">regression</span> <span class="k">as</span> <span class="n">reg</span>
+<span class="kn">from</span> <span class="nn">array</span> <span class="kn">import</span> <span class="n">array</span>
+<span class="kn">from</span> <span class="nn">.pca</span> <span class="kn">import</span> <span class="n">PCA</span>
+
+<div class="viewcode-block" id="Data">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Data">[docs]</a>
+<span class="k">class</span> <span class="nc">Data</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Instantiate a Data object.</span>
+<span class="sd">    Acts as an array with multiple methods for operating on data.</span>
+
+<span class="sd">    :param Xs: Data.</span>
+<span class="sd">    :type Xs: np.ndarray</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Xs</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Xs</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">array</span><span class="p">))</span> <span class="k">else</span> <span class="n">Xs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">gaussian</span><span class="p">:</span> <span class="n">ds</span><span class="o">.</span><span class="n">Gaussian</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">Gaussian</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bernoulli</span><span class="p">:</span> <span class="n">ds</span><span class="o">.</span><span class="n">Bernoulli</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">Bernoulli</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exponential</span><span class="p">:</span> <span class="n">ds</span><span class="o">.</span><span class="n">Exponential</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">poisson</span><span class="p">:</span> <span class="n">ds</span><span class="o">.</span><span class="n">Poisson</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binomial</span><span class="p">:</span> <span class="n">ds</span><span class="o">.</span><span class="n">Binomial</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uniform</span><span class="p">:</span> <span class="n">ds</span><span class="o">.</span><span class="n">Uniform</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">geometric</span><span class="p">:</span> <span class="n">ds</span><span class="o">.</span><span class="n">Geometric</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">Geometric</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Data.set_model">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Data.set_model">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the probability model that will be used in our analysis.</span>
+
+<span class="sd">        :param model: Model name.</span>
+<span class="sd">        :type model: str</span>
+
+<span class="sd">        :return: Instance of Distribution model.</span>
+<span class="sd">        :rtype: ds.Distribution</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">Distribution</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span><span class="o">.</span><span class="n">distribution</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Data.mean">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Data.mean">[docs]</a>
+    <span class="k">def</span> <span class="nf">mean</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the mean of the data set.</span>
+
+<span class="sd">        :return: Mean of the data set.</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span>
+        
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span></div>
+
+        
+<div class="viewcode-block" id="Data.var">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Data.var">[docs]</a>
+    <span class="k">def</span> <span class="nf">var</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the variance of the data set.</span>
+
+<span class="sd">        :return: Variance of the data set.</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">variance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span>
+        
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">var</span><span class="p">()</span></div>
+
+        
+<div class="viewcode-block" id="Data.skewness">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Data.skewness">[docs]</a>
+    <span class="k">def</span> <span class="nf">skewness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the skewness of the given data set.</span>
+
+<span class="sd">        :param p: Parameter for skewness calculation if required.</span>
+<span class="sd">        :type p: float</span>
+
+<span class="sd">        :return: Skewness of the data set</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You must define a model&quot;</span><span class="p">)</span>
+        
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;skewness&quot;</span><span class="p">):</span>
+
+            <span class="k">if</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Bernoulli&quot;</span><span class="p">:</span>
+
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">skewness</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            
+            <span class="k">else</span><span class="p">:</span>
+
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">skewness</span><span class="p">()</span>
+        
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The model you defined does not have the method skewness&quot;</span><span class="p">)</span></div>
+
+        
+<div class="viewcode-block" id="Data.kurtosis">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Data.kurtosis">[docs]</a>
+    <span class="k">def</span> <span class="nf">kurtosis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the kurtosis of the given data set.</span>
+
+<span class="sd">        :param p: Parameter for kurtosis calculation if required.</span>
+<span class="sd">        :type p: float</span>
+
+<span class="sd">        :return: Kurtosis of the data set</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You must define a model&quot;</span><span class="p">)</span>
+        
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;kurtosis&quot;</span><span class="p">):</span>
+
+            <span class="k">if</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Bernoulli&quot;</span><span class="p">:</span>
+
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">kurtosis</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            
+            <span class="k">else</span><span class="p">:</span>
+
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">kurtosis</span><span class="p">()</span>
+        
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The model you defined does not have the method kurtosis&quot;</span><span class="p">)</span></div>
+
+        
+<div class="viewcode-block" id="Data.p_hat">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Data.p_hat">[docs]</a>
+    <span class="k">def</span> <span class="nf">p_hat</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the parameter p_hat from our given data set if it fits the correct distribution.</span>
+
+<span class="sd">        :return: P hat parameter.</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You must define a model&quot;</span><span class="p">)</span>
+        
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;p_hat&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">p_hat</span><span class="p">()</span>
+        
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The model you defined does not have parameter p hat&quot;</span><span class="p">)</span></div>
+
+        
+<div class="viewcode-block" id="Data.lamb_hat">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Data.lamb_hat">[docs]</a>
+    <span class="k">def</span> <span class="nf">lamb_hat</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the parameter lambda from our given data set if it fits the correct distribution.</span>
+
+<span class="sd">        :return: lambda parameter.</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You must define a model&quot;</span><span class="p">)</span>
+        
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;lamb_hat&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">lamb_hat</span><span class="p">()</span>
+        
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The model you defined does not have parameter lambda hat&quot;</span><span class="p">)</span></div>
+
+        
+<div class="viewcode-block" id="Data.pdf">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Data.pdf">[docs]</a>
+    <span class="k">def</span> <span class="nf">pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">parameter1</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">parameter2</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the probability of a certain value for the model specified.</span>
+
+<span class="sd">        :param value: Value we want to find the probability of.</span>
+<span class="sd">        :type value: float</span>
+
+<span class="sd">        :param parameter1: Optional expected value parameter.</span>
+<span class="sd">        :type parameter1: float</span>
+
+<span class="sd">        :param parameter2: Optional variance parameter.</span>
+<span class="sd">        :type parameter2: float</span>
+
+<span class="sd">        :return: Probability of achieving a certain result.</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You must define a model&quot;</span><span class="p">)</span>
+        
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;pdf&quot;</span><span class="p">):</span>
+
+            <span class="k">if</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Gaussian&quot;</span><span class="p">:</span>
+
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">parameter1</span><span class="p">,</span> <span class="n">parameter2</span><span class="p">)</span>
+            
+            <span class="k">elif</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Binomial&quot;</span><span class="p">:</span>
+
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">parameter1</span><span class="p">,</span> <span class="n">parameter2</span><span class="p">)</span>
+            
+            <span class="k">else</span><span class="p">:</span>
+
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">parameter1</span><span class="p">)</span>
+        
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The model you defined does not have the method pdf&quot;</span><span class="p">)</span></div>
+
+        
+<div class="viewcode-block" id="Data.cdf">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Data.cdf">[docs]</a>
+    <span class="k">def</span> <span class="nf">cdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">parameter1</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">parameter2</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the cumulative probability of a certain value for the model specified.</span>
+
+<span class="sd">        :param value: Value we want to find the probability of.</span>
+<span class="sd">        :type value: float</span>
+
+<span class="sd">        :param parameter1: Optional expected value parameter.</span>
+<span class="sd">        :type parameter1: float</span>
+
+<span class="sd">        :param parameter2: Optional variance parameter.</span>
+<span class="sd">        :type parameter2: float</span>
+
+<span class="sd">        :return: Probabilty of achieving up to a certain result.</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You must define a model&quot;</span><span class="p">)</span>
+        
+        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;cdf&quot;</span><span class="p">):</span>
+            
+            <span class="k">if</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Gaussian&quot;</span><span class="p">:</span>
+
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            
+            <span class="k">elif</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Binomial&quot;</span><span class="p">:</span>
+
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">parameter1</span><span class="p">,</span> <span class="n">parameter2</span><span class="p">)</span>
+            
+            <span class="k">else</span><span class="p">:</span>
+
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">parameter1</span><span class="p">)</span>
+        
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The model you defined does not have the method pdf&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Data.hypothesis_test">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Data.hypothesis_test">[docs]</a>
+    <span class="k">def</span> <span class="nf">hypothesis_test</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ht</span><span class="o">.</span><span class="n">HypothesisTesting</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method used to perfrom multiple statistical hypothesis testing functions.</span>
+<span class="sd">        Once called you can use any method from the Hypothesis test class.</span>
+
+<span class="sd">        :param model: If instance attribute model has not been set you may pass it in hear.</span>
+<span class="sd">        :type model: str</span>
+
+<span class="sd">        :return: Instance of HypothesisTesting object.</span>
+<span class="sd">        :rtype: ht.HypothesisTesting</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;You must define a model, the type is set to string which is not a correct model type&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">model</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">ht</span><span class="o">.</span><span class="n">HypothesisTesting</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="Data.bayesian_statistic">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Data.bayesian_statistic">[docs]</a>
+    <span class="k">def</span> <span class="nf">bayesian_statistic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">likelihood</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">prior</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">bs</span><span class="o">.</span><span class="n">Bayesian</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method used to perform Bayesian statistical analysis.</span>
+
+<span class="sd">        :param likelihood: The Model used to compute the likelihood function that encorporates new data in bayesian statistics.</span>
+<span class="sd">        :type likelihood: str</span>
+
+<span class="sd">        :param prior: The Model used to base an assumption of what the data/probability already is. Usually Gamma or Beta.</span>
+<span class="sd">        :tyoe prior: str</span>
+
+<span class="sd">        :return: Instance of Bayesian object used for Bayesian statistics. </span>
+<span class="sd">        :rtype: bs.Bayesian</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">likelihood</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_model</span><span class="p">(</span><span class="n">likelihood</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">bs</span><span class="o">.</span><span class="n">Bayesian</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">,</span> <span class="n">likelihood</span><span class="p">,</span> <span class="n">prior</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="Data.linear_regression">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Data.linear_regression">[docs]</a>
+    <span class="k">def</span> <span class="nf">linear_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method used to perform a linear regression on Our data and another variable.</span>
+<span class="sd">        The data originally passed into the Data class is our response variable.</span>
+
+<span class="sd">        :param data: Data used as explanatory variable.</span>
+<span class="sd">        :type data: np.ndarray</span>
+
+<span class="sd">        :return: A linear regression object that has multiple methods for performing a linear regression.</span>
+<span class="sd">        :rtype: reg.LinearRegression</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">reg</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="Data.multiple_linear_regression">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Data.multiple_linear_regression">[docs]</a>
+    <span class="k">def</span> <span class="nf">multiple_linear_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method used to perform a multiple linear regression on Our data and multiple other variables.</span>
+<span class="sd">        The data originally passed into the Data class is our response variable.</span>
+
+<span class="sd">        :param args: arguments are multiple arrays of data.</span>
+<span class="sd">        :type args: np.ndarray</span>
+
+<span class="sd">        :return: A multiple linear regression object that has multiple methods for performing and plotting a multiple linear regression.</span>
+<span class="sd">        :rtype: reg.MultipleLinearRegression</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">reg</span><span class="o">.</span><span class="n">MultipleLinearRegression</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="Data.pca">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Data.pca">[docs]</a>
+    <span class="k">def</span> <span class="nf">pca</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method used to conduct Principle Component Analysis on a variable amount of data.</span>
+
+<span class="sd">        :param args: arguments are multiple arrays of data.</span>
+<span class="sd">        :type args: np.ndarray</span>
+
+<span class="sd">        :return: An instance of a PCA object.</span>
+<span class="sd">        :rtype: PCA</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">PCA</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Jason DiBiase.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

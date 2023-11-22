@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyez_stats.bayesian_statistics &mdash; pyez_stats 0.1.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=a58bc63e"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            pyez_stats
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Python API:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html"><code class="docutils literal notranslate"><span class="pre">Data</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.Gaussian"><code class="docutils literal notranslate"><span class="pre">Gaussian</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.Exponential"><code class="docutils literal notranslate"><span class="pre">Exponential</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.Bernoulli"><code class="docutils literal notranslate"><span class="pre">Bernoulli</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.Poisson"><code class="docutils literal notranslate"><span class="pre">Poisson</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.Binomial"><code class="docutils literal notranslate"><span class="pre">Binomial</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.Uniform"><code class="docutils literal notranslate"><span class="pre">Uniform</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.Geometric"><code class="docutils literal notranslate"><span class="pre">Geometric</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.TestStatistic"><code class="docutils literal notranslate"><span class="pre">TestStatistic</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.PValue"><code class="docutils literal notranslate"><span class="pre">PValue</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.ConfidenceInterval"><code class="docutils literal notranslate"><span class="pre">ConfidenceInterval</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.Bayesian"><code class="docutils literal notranslate"><span class="pre">Bayesian</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.LinearRegression"><code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.MultipleLinearRegression"><code class="docutils literal notranslate"><span class="pre">MultipleLinearRegression</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../source/api/pyez_stats.html#pyez_stats.PCA"><code class="docutils literal notranslate"><span class="pre">PCA</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyez_stats</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pyez_stats.bayesian_statistics</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pyez_stats.bayesian_statistics</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">.distributions</span> <span class="kn">import</span> <span class="n">Gaussian</span>
+<span class="kn">from</span> <span class="nn">.distributions</span> <span class="kn">import</span> <span class="n">Gamma</span>
+<span class="kn">from</span> <span class="nn">.distributions</span> <span class="kn">import</span> <span class="n">Beta</span>
+<span class="kn">from</span> <span class="nn">.distributions</span> <span class="kn">import</span> <span class="n">Uniform</span>
+<span class="kn">from</span> <span class="nn">.distributions</span> <span class="kn">import</span> <span class="n">Bernoulli</span>
+<span class="kn">from</span> <span class="nn">.distributions</span> <span class="kn">import</span> <span class="n">Exponential</span>
+<span class="kn">from</span> <span class="nn">.distributions</span> <span class="kn">import</span> <span class="n">Distribution</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">statistic</span> <span class="k">as</span> <span class="n">s</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">likelihoods</span> <span class="k">as</span> <span class="n">ll</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.lines</span> <span class="k">as</span> <span class="nn">mlines</span>
+
+<span class="k">class</span> <span class="nc">ConjugatePrior</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Instantiate a conjugate prior object to be used in other class&#39;s for defining prior distributions.</span>
+<span class="sd">    This is a helper class that is used in other class&#39;s for easy access to other distributions.</span>
+
+<span class="sd">    :param Xs: Array object of our data.</span>
+<span class="sd">    :type Xs: np.ndarray</span>
+
+<span class="sd">    :param model: Instance attribute used to define the distribution to be used as the conjugate prior.</span>
+<span class="sd">    :type model: str </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Xs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Xs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">model</span>
+
+    <span class="k">def</span> <span class="nf">distribution</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dist</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">mu</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">var</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A helper method used for filtering out and returning a pdf of a passed distribution.</span>
+
+<span class="sd">        :param dist: The distribution used as the prior, if the model instance attribute is not defined we have to define it here.</span>
+<span class="sd">        :type dist: str</span>
+
+<span class="sd">        :param value: The value of the probablity we want to calculate.</span>
+<span class="sd">        :type value: float</span>
+
+<span class="sd">        :param mu: Optional parameter used to calculate the pdf if the mean of the population is known.</span>
+<span class="sd">        :type mu: float</span>
+
+<span class="sd">        :param var: Optional parameter used to calculate the pdf if the variance of the population is known.</span>
+<span class="sd">        :type var: float</span>
+
+<span class="sd">        :param theta: Parameter used as p hat for a bernoulli distribution and lambda hat for and exponential distribution.</span>
+<span class="sd">        :type theta: float</span>
+
+<span class="sd">        :param a: Parameter used in a Beta and Gamma distribution.</span>
+<span class="sd">        :type a: float</span>
+
+<span class="sd">        :param b: Parameter used in a Beta and Gamma distribution.</span>
+<span class="sd">        :type b: float</span>
+
+<span class="sd">        :return: Distribution from distribution.py file.</span>
+<span class="sd">        :rtype: Distribution </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">dist</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You must set a model&quot;</span>
+        
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">dist</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">dist</span>
+
+        <span class="k">match</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+
+            <span class="k">case</span> <span class="s2">&quot;gaussian&quot;</span> <span class="o">|</span> <span class="s2">&quot;gauss&quot;</span> <span class="o">|</span> <span class="s2">&quot;normal&quot;</span> <span class="o">|</span> <span class="s2">&quot;norm&quot;</span> <span class="o">|</span> <span class="s2">&quot;gaus&quot;</span><span class="p">:</span>
+
+                <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+                    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;When using a Gaussian as a conjugate prior you must define a value&quot;</span><span class="p">)</span>
+                
+                <span class="k">return</span> <span class="n">Gaussian</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span>
+            
+            <span class="k">case</span> <span class="s2">&quot;gamma&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+                    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;When using a Gamma distribution as a conjugate prior you must define a value&quot;</span><span class="p">)</span>
+                
+                <span class="k">return</span> <span class="n">Gamma</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+            
+            <span class="k">case</span> <span class="s2">&quot;beta&quot;</span><span class="p">:</span>
+
+                <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+                    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;When using a Beta distribution as a conjugate prior you must define a value&quot;</span><span class="p">)</span>
+
+                <span class="k">return</span> <span class="n">Beta</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+            
+            <span class="k">case</span> <span class="s2">&quot;bernoulli&quot;</span> <span class="o">|</span> <span class="s2">&quot;ber&quot;</span><span class="p">:</span>
+
+                <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+                    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;When using a Bernoulli distribution as a conjugate prior you must define a value&quot;</span><span class="p">)</span>
+
+                <span class="k">return</span> <span class="n">Bernoulli</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+            
+            <span class="k">case</span> <span class="s2">&quot;exponential&quot;</span> <span class="o">|</span> <span class="s2">&quot;exp&quot;</span><span class="p">:</span>
+
+                <span class="k">return</span> <span class="n">Exponential</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+            
+            <span class="k">case</span> <span class="s2">&quot;uniform&quot;</span> <span class="o">|</span> <span class="s2">&quot;uni&quot;</span><span class="p">:</span>
+
+                <span class="k">return</span> <span class="n">Uniform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">()</span>
+            
+<div class="viewcode-block" id="Bayesian">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Bayesian">[docs]</a>
+<span class="k">class</span> <span class="nc">Bayesian</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Instantiate a Bayesian object for Bayesian statistical analysis.</span>
+
+<span class="sd">    :param Xs: Data used for Bayesian statistical analysis.</span>
+<span class="sd">    :type Xs: np.ndarray</span>
+
+<span class="sd">    :param likelihood: Parameter used to specify the model we will use as a likelihood.</span>
+<span class="sd">    :type likelihood: str</span>
+
+<span class="sd">    :param prior: Parameter used to specify the model we will use as a prior distribution.</span>
+<span class="sd">    :type prior: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Xs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">likelihood</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">prior</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Xs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">likelihood</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prior</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">prior</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">theta_range</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">posterior_distributions</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Bayesian.set_prior">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Bayesian.set_prior">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_prior</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A method used to set a prior distribution if it has not yet been set while instantiating the Bayesian object.</span>
+
+<span class="sd">        :param model: Used to define a model for out prior distribution.</span>
+<span class="sd">        :type model: str </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prior</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">model</span></div>
+
+
+<div class="viewcode-block" id="Bayesian.set_likelihood">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Bayesian.set_likelihood">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_likelihood</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A method used to set a likelihood distribution if it has not yet been set while instantiating the Bayesian object.</span>
+
+<span class="sd">        :param model: Used to define a model for out likelihood distribution.</span>
+<span class="sd">        :type model: str </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">model</span></div>
+
+
+<div class="viewcode-block" id="Bayesian.set_theta_range">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Bayesian.set_theta_range">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_theta_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter_range</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method used to set the range of our parameter which will be passed into a maximum likelihood function in order to get a range of parameters.</span>
+
+<span class="sd">        :param parameter_range: np.linspace optional parameter used to specify a range.</span>
+<span class="sd">        :type parameter_range: np.ndarray</span>
+
+<span class="sd">        :param start: Optional start of our parameter range.</span>
+<span class="sd">        :tyoe start: float</span>
+
+<span class="sd">        :param end: Optional end of our parameter range</span>
+<span class="sd">        :type end: float</span>
+
+<span class="sd">        :return: Instance of our Bayesian object.</span>
+<span class="sd">        :rtype: Bayesian</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">parameter_range</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">start</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">end</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">theta_range</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">.01</span><span class="p">,</span> <span class="mf">.99</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+        
+        <span class="k">elif</span> <span class="n">parameter_range</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="n">start</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">end</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;You must define both a starting point and an ending point&quot;</span><span class="p">)</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">theta_range</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parameter_range</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">theta_range</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">parameter_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">parameter_range</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">theta_range</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">parameter_range</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+        
+<div class="viewcode-block" id="Bayesian.likelihood_model">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Bayesian.likelihood_model">[docs]</a>
+    <span class="k">def</span> <span class="nf">likelihood_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">likelihood</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method used to define a model that will be used to update our parameters as we incorporate in new data.</span>
+
+<span class="sd">        :param likelihood: Define a distribution to use as a likelihood.</span>
+<span class="sd">        :type likelihood: str</span>
+
+<span class="sd">        :param data: Optional parameter, used for functionality when inputing data into our Bayesian analysis or to change our original data passed in.</span>
+<span class="sd">        :type data: float</span>
+
+<span class="sd">        :return: Distribution to be used in our likelihood function.</span>
+<span class="sd">        :rtype: Distribution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="n">likelihood</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;You must define a model&quot;</span><span class="p">)</span>
+            
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+                <span class="k">return</span> <span class="n">Distribution</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">,</span> <span class="n">likelihood</span><span class="p">)</span><span class="o">.</span><span class="n">distribution</span><span class="p">()</span>
+            
+            <span class="k">else</span><span class="p">:</span>
+
+                <span class="k">return</span> <span class="n">Distribution</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span><span class="p">)</span><span class="o">.</span><span class="n">distribution</span><span class="p">()</span>
+            
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="n">likelihood</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;You must define a model&quot;</span><span class="p">)</span>
+            
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+                <span class="k">return</span> <span class="n">Distribution</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">likelihood</span><span class="p">)</span><span class="o">.</span><span class="n">distribution</span><span class="p">()</span>
+            
+            <span class="k">else</span><span class="p">:</span>
+
+                <span class="k">return</span> <span class="n">Distribution</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span><span class="p">)</span><span class="o">.</span><span class="n">distribution</span><span class="p">()</span></div>
+
+        
+<div class="viewcode-block" id="Bayesian.conjugate_prior">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Bayesian.conjugate_prior">[docs]</a>
+    <span class="k">def</span> <span class="nf">conjugate_prior</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prior</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">mu</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">var</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A method used for defining a conjugate prior distribution.</span>
+
+<span class="sd">        :param prior: The distribution used as the prior, if the model instance attribute is not defined we have to define it here.</span>
+<span class="sd">        :type prior: str</span>
+
+<span class="sd">        :param value: The value of the probablity we want to calculate.</span>
+<span class="sd">        :type value: float</span>
+
+<span class="sd">        :param mu: Optional parameter used to calculate the pdf if the mean of the population is known.</span>
+<span class="sd">        :type mu: float</span>
+
+<span class="sd">        :param var: Optional parameter used to calculate the pdf if the variance of the population is known.</span>
+<span class="sd">        :type var: float</span>
+
+<span class="sd">        :param theta: Parameter used as p hat for a bernoulli distribution and lambda hat for and exponential distribution.</span>
+<span class="sd">        :type theta: float</span>
+
+<span class="sd">        :param a: Parameter used in a Beta and Gamma distribution.</span>
+<span class="sd">        :type a: float</span>
+
+<span class="sd">        :param b: Parameter used in a Beta and Gamma distribution.</span>
+<span class="sd">        :type b: float</span>
+
+<span class="sd">        :return: A instance of an object the represents our prior distribution.</span>
+<span class="sd">        :rtype: ConjugatePrior</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">prior</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">prior</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="n">ConjugatePrior</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span><span class="o">.</span><span class="n">distribution</span><span class="p">(</span><span class="s2">&quot;Uniform&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">prior</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="n">ConjugatePrior</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span><span class="o">.</span><span class="n">distribution</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prior</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="n">ConjugatePrior</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">)</span><span class="o">.</span><span class="n">distribution</span><span class="p">(</span><span class="n">prior</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span></div>
+
+        
+<div class="viewcode-block" id="Bayesian.set_posterior">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Bayesian.set_posterior">[docs]</a>
+    <span class="k">def</span> <span class="nf">set_posterior</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">likelihood</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">prior</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">mu</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">var</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A method used to set a posterior distribution used for our Bayesian statistic analysis.</span>
+
+<span class="sd">        :param likelihood: Used to define our likelihood if it has not been defined yet.</span>
+<span class="sd">        :type likelihood: str</span>
+
+<span class="sd">        :param prior: The distribution used as the prior, if the model instance attribute is not defined we have to define it here.</span>
+<span class="sd">        :type prior: str</span>
+
+<span class="sd">        :param mu: Optional parameter used if the mean of the population is known.</span>
+<span class="sd">        :type mu: float</span>
+
+<span class="sd">        :param var: Optional parameter used if the variance of the population is known.</span>
+<span class="sd">        :type var: float</span>
+
+<span class="sd">        :param theta: Parameter used as p hat for a bernoulli distribution and lambda hat for and exponential distribution.</span>
+<span class="sd">        :type theta: float</span>
+
+<span class="sd">        :param a: Parameter used in a Beta and Gamma distribution.</span>
+<span class="sd">        :type a: float</span>
+
+<span class="sd">        :param b: Parameter used in a Beta and Gamma distribution.</span>
+<span class="sd">        :type b: float</span>
+
+<span class="sd">        :return: Dictionary of all calculates posterior distributions.</span>
+<span class="sd">        :rtype: Dictionary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">conjugate_prior</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conjugate_prior</span><span class="p">(</span><span class="n">prior</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mu</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+        <span class="n">posterior_dict</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">data_point</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="p">):</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">likelihood</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">likelihood</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;gaus&quot;</span><span class="p">,</span> <span class="s2">&quot;gauss&quot;</span><span class="p">,</span> <span class="s2">&quot;gaussian&quot;</span><span class="p">,</span> <span class="s2">&quot;normal&quot;</span><span class="p">))</span> <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">likelihood</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;gaus&quot;</span><span class="p">,</span> <span class="s2">&quot;gauss&quot;</span><span class="p">,</span> <span class="s2">&quot;gaussian&quot;</span><span class="p">,</span> <span class="s2">&quot;normal&quot;</span><span class="p">)):</span>
+                
+                <span class="k">if</span> <span class="n">var</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;You must set a value for the parameter var&quot;</span><span class="p">)</span>
+                
+                <span class="n">likelihood_func</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">likelihood_model</span><span class="p">(</span><span class="n">likelihood</span><span class="p">,</span> <span class="p">[</span><span class="n">data_point</span><span class="p">])</span><span class="o">.</span><span class="n">likelihood_function</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta_range</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span>
+                
+            <span class="k">else</span><span class="p">:</span>
+                
+                <span class="n">likelihood_func</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">likelihood_model</span><span class="p">(</span><span class="n">likelihood</span><span class="p">,</span> <span class="p">[</span><span class="n">data_point</span><span class="p">])</span><span class="o">.</span><span class="n">likelihood_function</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta_range</span><span class="p">)</span>
+            
+            <span class="n">marginal_likelihood</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">likelihood_func</span> <span class="o">*</span> <span class="n">conjugate_prior</span><span class="p">)</span>
+            <span class="n">posterior</span> <span class="o">=</span> <span class="p">(</span><span class="n">likelihood_func</span> <span class="o">*</span> <span class="n">conjugate_prior</span><span class="p">)</span> <span class="o">/</span> <span class="n">marginal_likelihood</span>
+            <span class="n">conjugate_prior</span> <span class="o">=</span> <span class="n">posterior</span>
+            <span class="n">posterior_dict</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">posterior</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">posterior_distributions</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">posterior_dict</span>
+
+        <span class="k">return</span> <span class="n">posterior_dict</span></div>
+
+        
+<div class="viewcode-block" id="Bayesian.get_posterior">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Bayesian.get_posterior">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_posterior</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">likelihood</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">prior</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">mu</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">var</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A method used to get the posterior distribution used for our Bayesian statistic analysis.</span>
+
+<span class="sd">        :param likelihood: Used to define our likelihood if it has not been defined yet.</span>
+<span class="sd">        :type likelihood: str</span>
+
+<span class="sd">        :param prior: The distribution used as the prior, if the model instance attribute is not defined we have to define it here.</span>
+<span class="sd">        :type prior: str</span>
+
+<span class="sd">        :param mu: Optional parameter used if the mean of the population is known.</span>
+<span class="sd">        :type mu: float</span>
+
+<span class="sd">        :param var: Optional parameter used if the variance of the population is known.</span>
+<span class="sd">        :type var: float</span>
+
+<span class="sd">        :param theta: Parameter used as p hat for a bernoulli distribution and lambda hat for and exponential distribution.</span>
+<span class="sd">        :type theta: float</span>
+
+<span class="sd">        :param a: Parameter used in a Beta and Gamma distribution.</span>
+<span class="sd">        :type a: float</span>
+
+<span class="sd">        :param b: Parameter used in a Beta and Gamma distribution.</span>
+<span class="sd">        :type b: float</span>
+
+<span class="sd">        :return: Dictionary of all calculates posterior distributions.</span>
+<span class="sd">        :rtype: Dictionary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">posterior_distributions</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="n">posterior_dict</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_posterior</span><span class="p">(</span><span class="n">likelihood</span><span class="p">,</span> <span class="n">prior</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="n">posterior_dict</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">posterior_distributions</span>
+
+        <span class="k">return</span> <span class="n">posterior_dict</span></div>
+
+    
+<div class="viewcode-block" id="Bayesian.max_parameter_list">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Bayesian.max_parameter_list">[docs]</a>
+    <span class="k">def</span> <span class="nf">max_parameter_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">likelihood</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">prior</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">mu</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">var</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A method used to calculate the max parameter for each new data point passed into the likelihood function.</span>
+
+<span class="sd">        :param likelihood: Used to define our likelihood if it has not been defined yet.</span>
+<span class="sd">        :type likelihood: str</span>
+
+<span class="sd">        :param prior: The distribution used as the prior, if the model instance attribute is not defined we have to define it here.</span>
+<span class="sd">        :type prior: str</span>
+
+<span class="sd">        :param mu: Optional parameter used if the mean of the population is known.</span>
+<span class="sd">        :type mu: float</span>
+
+<span class="sd">        :param var: Optional parameter used if the variance of the population is known.</span>
+<span class="sd">        :type var: float</span>
+
+<span class="sd">        :param theta: Parameter used as p hat for a bernoulli distribution and lambda hat for and exponential distribution.</span>
+<span class="sd">        :type theta: float</span>
+
+<span class="sd">        :param a: Parameter used in a Beta and Gamma distribution.</span>
+<span class="sd">        :type a: float</span>
+
+<span class="sd">        :param b: Parameter used in a Beta and Gamma distribution.</span>
+<span class="sd">        :type b: float</span>
+
+<span class="sd">        :return: A list of the max parameter and max probabilities.</span>
+<span class="sd">        :rtype: List</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">posterior_dict</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_posterior</span><span class="p">(</span><span class="n">likelihood</span><span class="p">,</span> <span class="n">prior</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+        <span class="n">max_parameter</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">max_probability</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">posterior_dict</span><span class="p">:</span>
+
+            <span class="n">posterior_distribution</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">posterior_dict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+            <span class="n">max_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">max_value_index</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">posterior_distribution</span><span class="p">)):</span>
+
+                <span class="k">if</span> <span class="n">posterior_distribution</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">max_value</span><span class="p">:</span>
+
+                    <span class="n">max_value</span> <span class="o">=</span> <span class="n">posterior_distribution</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                    <span class="n">max_value_index</span> <span class="o">=</span> <span class="n">j</span>
+
+                <span class="k">else</span><span class="p">:</span>
+
+                    <span class="k">continue</span>
+
+            <span class="nb">map</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta_range</span><span class="p">[</span><span class="n">max_value_index</span><span class="p">]</span>
+
+            <span class="n">max_parameter</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">map</span><span class="p">)</span>
+            <span class="n">max_probability</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">max_value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">max_parameter</span><span class="p">,</span> <span class="n">max_probability</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="Bayesian.posterior_mean">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Bayesian.posterior_mean">[docs]</a>
+    <span class="k">def</span> <span class="nf">posterior_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">likelihood</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">prior</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">mu</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">var</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A method used to calculate the mean of the posterior distributions.</span>
+
+<span class="sd">        :param likelihood: Used to define our likelihood if it has not been defined yet.</span>
+<span class="sd">        :type likelihood: str</span>
+
+<span class="sd">        :param prior: The distribution used as the prior, if the model instance attribute is not defined we have to define it here.</span>
+<span class="sd">        :type prior: str</span>
+
+<span class="sd">        :param mu: Optional parameter used if the mean of the population is known.</span>
+<span class="sd">        :type mu: float</span>
+
+<span class="sd">        :param var: Optional parameter used if the variance of the population is known.</span>
+<span class="sd">        :type var: float</span>
+
+<span class="sd">        :param theta: Parameter used as p hat for a bernoulli distribution and lambda hat for and exponential distribution.</span>
+<span class="sd">        :type theta: float</span>
+
+<span class="sd">        :param a: Parameter used in a Beta and Gamma distribution.</span>
+<span class="sd">        :type a: float</span>
+
+<span class="sd">        :param b: Parameter used in a Beta and Gamma distribution.</span>
+<span class="sd">        :type b: float</span>
+
+<span class="sd">        :return: Average of the posterior distribution.</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">posteriors_map</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_parameter_list</span><span class="p">(</span><span class="n">likelihood</span><span class="p">,</span> <span class="n">prior</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">posteriors_map</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Bayesian.map">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Bayesian.map">[docs]</a>
+    <span class="k">def</span> <span class="nf">map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">likelihood</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">prior</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">mu</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">var</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A method used to return the last value in a list which is the maxima a posterior for out Bayesian analysis.</span>
+
+<span class="sd">        :param likelihood: Used to define our likelihood if it has not been defined yet.</span>
+<span class="sd">        :type likelihood: str</span>
+
+<span class="sd">        :param prior: The distribution used as the prior, if the model instance attribute is not defined we have to define it here.</span>
+<span class="sd">        :type prior: str</span>
+
+<span class="sd">        :param mu: Optional parameter used if the mean of the population is known.</span>
+<span class="sd">        :type mu: float</span>
+
+<span class="sd">        :param var: Optional parameter used if the variance of the population is known.</span>
+<span class="sd">        :type var: float</span>
+
+<span class="sd">        :param theta: Parameter used as p hat for a bernoulli distribution and lambda hat for and exponential distribution.</span>
+<span class="sd">        :type theta: float</span>
+
+<span class="sd">        :param a: Parameter used in a Beta and Gamma distribution.</span>
+<span class="sd">        :type a: float</span>
+
+<span class="sd">        :param b: Parameter used in a Beta and Gamma distribution.</span>
+<span class="sd">        :type b: float</span>
+
+<span class="sd">        :return: The maxima a posterior.</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">posteriors_map</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_parameter_list</span><span class="p">(</span><span class="n">likelihood</span><span class="p">,</span> <span class="n">prior</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">posteriors_map</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
+
+    
+<div class="viewcode-block" id="Bayesian.confidence_region">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Bayesian.confidence_region">[docs]</a>
+    <span class="k">def</span> <span class="nf">confidence_region</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">likelihood</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">prior</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">mu</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">var</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">percent</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">90</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A method used to calculate a bayesian confidence region.</span>
+
+<span class="sd">        :param likelihood: Used to define our likelihood if it has not been defined yet.</span>
+<span class="sd">        :type likelihood: str</span>
+
+<span class="sd">        :param prior: The distribution used as the prior, if the model instance attribute is not defined we have to define it here.</span>
+<span class="sd">        :type prior: str</span>
+
+<span class="sd">        :param mu: Optional parameter used if the mean of the population is known.</span>
+<span class="sd">        :type mu: float</span>
+
+<span class="sd">        :param var: Optional parameter used if the variance of the population is known.</span>
+<span class="sd">        :type var: float</span>
+
+<span class="sd">        :param theta: Parameter used as p hat for a bernoulli distribution and lambda hat for and exponential distribution.</span>
+<span class="sd">        :type theta: float</span>
+
+<span class="sd">        :param a: Parameter used in a Beta and Gamma distribution.</span>
+<span class="sd">        :type a: float</span>
+
+<span class="sd">        :param b: Parameter used in a Beta and Gamma distribution.</span>
+<span class="sd">        :type b: float</span>
+
+<span class="sd">        :return: A list of our upper and lower values for our confidence region.</span>
+<span class="sd">        :rtype: List</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">max_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">likelihood</span><span class="p">,</span> <span class="n">prior</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+        <span class="n">var</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Xs</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>
+
+        <span class="n">z</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">percent</span><span class="p">)</span>
+        
+        <span class="n">confidence_region</span> <span class="o">=</span> <span class="p">[</span><span class="n">max_value</span> <span class="o">-</span> <span class="n">z</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">)),</span> <span class="n">max_value</span> <span class="o">+</span> <span class="n">z</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">))]</span>
+
+        <span class="k">return</span> <span class="n">confidence_region</span></div>
+
+    
+<div class="viewcode-block" id="Bayesian.plot_confidence_region">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Bayesian.plot_confidence_region">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot_confidence_region</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">likelihood</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">prior</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">mu</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">var</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">percent</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">90</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A method for plotting our amx posterior distribution and our bayesian confidence region.</span>
+
+<span class="sd">        :param likelihood: Used to define our likelihood if it has not been defined yet.</span>
+<span class="sd">        :type likelihood: str</span>
+
+<span class="sd">        :param prior: The distribution used as the prior, if the model instance attribute is not defined we have to define it here.</span>
+<span class="sd">        :type prior: str</span>
+
+<span class="sd">        :param mu: Optional parameter used if the mean of the population is known.</span>
+<span class="sd">        :type mu: float</span>
+
+<span class="sd">        :param var: Optional parameter used if the variance of the population is known.</span>
+<span class="sd">        :type var: float</span>
+
+<span class="sd">        :param theta: Parameter used as p hat for a bernoulli distribution and lambda hat for and exponential distribution.</span>
+<span class="sd">        :type theta: float</span>
+
+<span class="sd">        :param a: Parameter used in a Beta and Gamma distribution.</span>
+<span class="sd">        :type a: float</span>
+
+<span class="sd">        :param b: Parameter used in a Beta and Gamma distribution.</span>
+<span class="sd">        :type b: float</span>
+
+<span class="sd">        :return: A bayesian confidence region.</span>
+<span class="sd">        :rtype: List</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">confidence_region</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">confidence_region</span><span class="p">(</span><span class="n">likelihood</span><span class="p">,</span> <span class="n">prior</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">percent</span><span class="p">)</span>
+
+        <span class="n">post_dict</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_posterior</span><span class="p">(</span><span class="n">likelihood</span><span class="p">,</span> <span class="n">prior</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+        <span class="n">last_posterior</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">post_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">percent</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">percent</span> <span class="o">*=</span> <span class="mi">100</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta_range</span><span class="p">,</span> <span class="n">last_posterior</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Final Posterior Distribution&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">confidence_region</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">percent</span><span class="si">}</span><span class="s1">% Conf Int&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">confidence_region</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ls</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;y&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">confidence_region</span></div>
+
+    
+<div class="viewcode-block" id="Bayesian.plot_posteriors">
+<a class="viewcode-back" href="../../source/api/pyez_stats.html#pyez_stats.Bayesian.plot_posteriors">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot_posteriors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">likelihood</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">prior</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">mu</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">var</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A method used to plot all of our posterior distributions.</span>
+
+<span class="sd">        :param likelihood: Used to define our likelihood if it has not been defined yet.</span>
+<span class="sd">        :type likelihood: str</span>
+
+<span class="sd">        :param prior: The distribution used as the prior, if the model instance attribute is not defined we have to define it here.</span>
+<span class="sd">        :type prior: str</span>
+
+<span class="sd">        :param mu: Optional parameter used if the mean of the population is known.</span>
+<span class="sd">        :type mu: float</span>
+
+<span class="sd">        :param var: Optional parameter used if the variance of the population is known.</span>
+<span class="sd">        :type var: float</span>
+
+<span class="sd">        :param theta: Parameter used as p hat for a bernoulli distribution and lambda hat for and exponential distribution.</span>
+<span class="sd">        :type theta: float</span>
+
+<span class="sd">        :param a: Parameter used in a Beta and Gamma distribution.</span>
+<span class="sd">        :type a: float</span>
+
+<span class="sd">        :param b: Parameter used in a Beta and Gamma distribution.</span>
+<span class="sd">        :type b: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">posterior_dict</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_posterior</span><span class="p">(</span><span class="n">likelihood</span><span class="p">,</span> <span class="n">prior</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+        <span class="n">posteriors_map</span><span class="p">,</span> <span class="n">posterior_probabilities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_parameter_list</span><span class="p">(</span><span class="n">likelihood</span><span class="p">,</span> <span class="n">prior</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+        <span class="n">partition</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">posterior_dict</span><span class="p">)</span> <span class="o">//</span> <span class="mi">4</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+        <span class="n">handles</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">posterior_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1">#print(key)</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">%</span> <span class="n">partition</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">posterior_dict</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta_range</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Model after observing </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1"> data&#39;</span><span class="p">)</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">posteriors_map</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">posterior_probabilities</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">posteriors_map</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">posterior_probabilities</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">ha</span> <span class="o">=</span> <span class="s1">&#39;center&#39;</span><span class="p">)</span>
+                <span class="n">handles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+        <span class="n">dummy_line1</span> <span class="o">=</span> <span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Maximum a Posterior: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">posteriors_map</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">dummy_line2</span> <span class="o">=</span> <span class="n">mlines</span><span class="o">.</span><span class="n">Line2D</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Posterior Mean: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">posteriors_map</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">handles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dummy_line1</span><span class="p">)</span>
+        <span class="n">handles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dummy_line2</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Posterior Distributions&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Parameter Value&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Probability Density&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">handles</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Finished&quot;</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Jason DiBiase.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
